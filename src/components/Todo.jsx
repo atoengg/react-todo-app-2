@@ -2,7 +2,7 @@ import React from "react";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { TiEdit } from "react-icons/ti";
 
-export const Todo = ({ todos }) => {
+export const Todo = ({ todos, removeTodo }) => {
 
 
   return todos.map((item, index) => (
@@ -13,7 +13,7 @@ export const Todo = ({ todos }) => {
       </div>
 
       <div className="flex items-center text-2xl cursor-pointer">
-        <RiCloseCircleLine className="mr-1 text-white" />
+        <RiCloseCircleLine className="mr-1 text-white" onClick={() => removeTodo(item.id)}/>
         <TiEdit className="text-white" />
       </div>
     </div>
