@@ -1,10 +1,13 @@
+import { TodoList } from "./components/TodoList"
 
 
 function App() {
 
   return (
     <>
-      <h1 className='text-center font-bold text-teal-500'>hello world</h1>
+      <div className='flex flex-col justify-start w-1/2 my-12 mx-auto min-h-screen text-center bg-white shadow-md rounded-lg pb-8'>
+      <TodoList/>
+    </div>
     </>
   )
 }
