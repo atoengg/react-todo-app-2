@@ -1,13 +1,38 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-export const TodoForm = () => {
+export const TodoForm = (props) => {
+  const [input, setInput] = useState(props.edit ? props.edit.value : "");
+
+  const handleChanges = (e) => {
+    setInput(e.target.value);
+  };
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    props.onSubmit({
+      id: Math.floor(Math.random() * 10000),
+      text: input,
+    });
+
+    setInput("");
+  };
   return (
-    <div className="mb-8">
+    <form className="mb-8" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Masukan Todolist"
         name="text"
-        className="py-3 px-5 rounded-md border-solid border-2 mr-3 border-[#d5d7da] outline-none bg-transparent text-white w-80 duration-200 transition-all ease-in placeholder:text-slate-300 focus:border-teal-500"
+        value={input}
+        onChange={handleChanges}
+        ref={inputRef}
+        className="py-3 px-5 rounded-md border-solid border-2 mr-3 border-[#d5d7da] outline-none bg-transparent text-black w-80 duration-200 transition-all ease-in placeholder:text-slate-300 focus:border-teal-500"
       />
       <button
         className="tambah py-3 font-semibold px-5 rounded-md border-none cursor-pointer outline-none text-white 
@@ -15,6 +40,6 @@ export const TodoForm = () => {
       >
         Tambah
       </button>
-    </div>
+    </form>
   );
 };
